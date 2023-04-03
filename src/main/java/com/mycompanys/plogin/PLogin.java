@@ -2,10 +2,18 @@
 
 package com.mycompanys.plogin;
 
+import com.mycompanys.plogin.igu.PrincipalLogin;
+
 
 public class PLogin {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        
+        PrincipalLogin login = new PrincipalLogin();
+        login.setVisible(true);
+        login.setLocationRelativeTo(null);
+        
+        
+        
     }
 }
