@@ -6,23 +6,39 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 
 @Entity
 public class Usuario implements Serializable {
     
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     private int id;
     private String nombreUsuario;
-    private String contraseña;
+    private String contrasena;
+    //Relacion bidireccional con tabla rol 
+    @ManyToOne
+    @JoinColumn(name="fk_rol") // columna que se va a crear para la relacion
+    private Rol unRol;
+
+    public Usuario(int id, String nombreUsuario, String contrasena, Rol unRol) {
+        this.id = id;
+        this.nombreUsuario = nombreUsuario;
+        this.contrasena = contrasena;
+        this.unRol = unRol;
+    }
 
     public Usuario() {
     }
 
-    public Usuario(int id, String nombreUsuario, String contraseña) {
-        this.id = id;
-        this.nombreUsuario = nombreUsuario;
-        this.contraseña = contraseña;
+    public Rol getUnRol() {
+        return unRol;
+    }
+
+    public void setUnRol(Rol unRol) {
+        this.unRol = unRol;
     }
 
     
@@ -43,12 +59,12 @@ public class Usuario implements Serializable {
         this.nombreUsuario = nombreUsuario;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getContrasena() {
+        return contrasena;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
     
     
